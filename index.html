@@ -53,11 +53,6 @@
       text-decoration: none;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
     .container {
       width: min(100%, var(--max-width));
       margin: 0 auto;
@@ -142,7 +137,7 @@
     }
 
     .hero {
-      padding: 34px 0 26px;
+      padding: 34px 0 22px;
     }
 
     .hero-card {
@@ -308,6 +303,118 @@
       max-width: 760px;
     }
 
+    .feature-card {
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(200,16,46,0.18), rgba(255,255,255,0.04)),
+        linear-gradient(145deg, #231316 0%, #141416 100%);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--kw-shadow);
+      padding: 28px;
+    }
+
+    .feature-card::before {
+      content: "";
+      position: absolute;
+      top: -50px;
+      right: -50px;
+      width: 200px;
+      height: 200px;
+      border-radius: 999px;
+      background: radial-gradient(circle, rgba(255,255,255,0.10), transparent 70%);
+      pointer-events: none;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.9fr;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .feature-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #fff0f3;
+      font-size: 0.86rem;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+
+    .feature-title {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 3vw, 2.8rem);
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+    }
+
+    .feature-text {
+      margin: 0;
+      color: rgba(255,255,255,0.84);
+      line-height: 1.72;
+      font-size: 1rem;
+      max-width: 720px;
+    }
+
+    .feature-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin: 18px 0 24px;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.88);
+      font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .feature-actions,
+    .hub-actions,
+    .event-actions {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .feature-panel {
+      display: grid;
+      gap: 12px;
+    }
+
+    .feature-panel-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      padding: 18px;
+    }
+
+    .feature-panel-card h4 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+    }
+
+    .feature-panel-card p {
+      margin: 0;
+      color: rgba(255,255,255,0.74);
+      line-height: 1.62;
+      font-size: 0.95rem;
+    }
+
     .hub-grid {
       display: grid;
       grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -376,27 +483,6 @@
       margin: 16px 0 20px;
     }
 
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      padding: 7px 11px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: rgba(255,255,255,0.84);
-      font-size: 0.83rem;
-      font-weight: 600;
-    }
-
-    .hub-actions,
-    .event-actions {
-      margin-top: auto;
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-    }
-
     .hub-link,
     .event-btn {
       display: inline-flex;
@@ -419,44 +505,22 @@
       box-shadow: 0 12px 24px rgba(255,255,255,0.08);
     }
 
-    .event-btn.secondary {
+    .event-btn.secondary,
+    .feature-secondary {
       background: rgba(255,255,255,0.06);
       color: var(--kw-white);
       border: 1px solid rgba(255,255,255,0.08);
     }
 
-    .event-btn.secondary:hover {
+    .event-btn.secondary:hover,
+    .feature-secondary:hover {
       background: rgba(255,255,255,0.10);
     }
 
     .events-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 18px;
-    }
-
-    .calendar-wrap {
-      margin-top: 22px;
-      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius-lg);
-      padding: 16px;
-      box-shadow: var(--kw-card-shadow);
-    }
-
-    .calendar-frame {
-      width: 100%;
-      min-height: 720px;
-      border: none;
-      border-radius: 16px;
-      background: #ffffff;
-    }
-
-    .calendar-note {
-      margin-top: 12px;
-      color: rgba(255,255,255,0.68);
-      font-size: 0.92rem;
-      line-height: 1.6;
     }
 
     .quick-grid {
@@ -544,7 +608,8 @@
     }
 
     @media (max-width: 1080px) {
-      .hero-grid {
+      .hero-grid,
+      .feature-grid {
         grid-template-columns: 1fr;
       }
 
@@ -552,16 +617,9 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
-      .events-grid {
-        grid-template-columns: 1fr;
-      }
-
+      .events-grid,
       .quick-grid {
         grid-template-columns: 1fr;
-      }
-
-      .calendar-frame {
-        min-height: 620px;
       }
     }
 
@@ -584,7 +642,8 @@
         padding-top: 20px;
       }
 
-      .hero-card {
+      .hero-card,
+      .feature-card {
         padding: 24px;
       }
 
@@ -599,10 +658,6 @@
 
       .footer-card {
         align-items: flex-start;
-      }
-
-      .calendar-frame {
-        min-height: 540px;
       }
     }
 
@@ -631,12 +686,14 @@
         font-size: 0.88rem;
       }
 
-      .hero-card {
+      .hero-card,
+      .feature-card {
         padding: 20px;
         border-radius: 22px;
       }
 
       .hero p,
+      .feature-text,
       .section-subtitle,
       .hub-card p,
       .event-card p,
@@ -648,7 +705,8 @@
       .hub-card,
       .event-card,
       .quick-card,
-      .tips-wrap {
+      .tips-wrap,
+      .feature-panel-card {
         padding: 18px;
       }
 
@@ -659,6 +717,7 @@
       }
 
       .hero-actions,
+      .feature-actions,
       .hub-actions,
       .event-actions,
       .footer-links {
@@ -667,10 +726,6 @@
 
       .footer-links a {
         flex: 1 1 100%;
-      }
-
-      .calendar-frame {
-        min-height: 480px;
       }
     }
   </style>
@@ -684,7 +739,17 @@
       support: "https://kw-north-agent-support.vercel.app/"
     };
 
-    const CALENDAR_EMBED_URL = "https://calendar.google.com/calendar/embed?src=kwnorth%40kwsa.co.za&ctz=Africa%2FJohannesburg";
+    const FEATURED_EVENT = {
+      title: "Command @ 8 Tech Training",
+      subtitle: "Recurring live tech touchpoint for KW North agents",
+      schedule: "Every Monday, Wednesday & Friday",
+      time: "08:00 - 08:15",
+      type: "Online",
+      description:
+        "A short, high-impact recurring training designed to keep agents consistent on Command and tech usage. Quick to join, easy to attend, and built for momentum.",
+      joinLink: "https://meet.google.com/zky-wqyk-ork",
+      detailsLink: "https://kw-north-training-byiud35hq-propertysquad-6926s-projects.vercel.app/"
+    };
 
     const EVENTS = [
       {
@@ -696,32 +761,20 @@
         description: "Join the Tuesday Meeting directly from the KW North Main Hub.",
         primaryLabel: "Join Meeting",
         primaryLink: "https://meet.google.com/hgn-aekk-jpu",
-        secondaryLabel: "Open Calendar",
-        secondaryLink: "https://calendar.google.com/calendar/u/0?cid=a3dub3J0aEBrd3NhLmNvLnph"
+        secondaryLabel: "Training Hub",
+        secondaryLink: "https://kw-north-training-byiud35hq-propertysquad-6926s-projects.vercel.app/"
       },
       {
-        icon: "🎓",
-        title: "New Agent Rev Up",
-        date: "Every Tuesday",
-        time: "08:30 - 09:30",
-        type: "Online",
-        description: "Weekly focused training session for new agents to build consistency and momentum.",
-        primaryLabel: "Join Meeting",
-        primaryLink: "#",
-        secondaryLabel: "Add to Calendar",
-        secondaryLink: "#"
-      },
-      {
-        icon: "👥",
-        title: "All Agents Weekly Meeting",
-        date: "Every Thursday",
-        time: "09:00 - 10:00",
-        type: "In Person / Online",
-        description: "Main weekly meeting for all agents with updates, communication, and focused training.",
-        primaryLabel: "View Details",
-        primaryLink: "#",
-        secondaryLabel: "RSVP / Calendar",
-        secondaryLink: "#"
+        icon: "🛠️",
+        title: "Agent Support",
+        date: "Book a session",
+        time: "15 / 30 / 45 min",
+        type: "Support",
+        description: "Need technical help, setup support, or training assistance? Book directly from the support hub.",
+        primaryLabel: "Get Support",
+        primaryLink: "https://kw-north-agent-support.vercel.app/",
+        secondaryLabel: "Open Hub",
+        secondaryLink: "https://kw-north-agent-support.vercel.app/"
       }
     ];
   </script>
@@ -737,9 +790,9 @@
       </div>
 
       <nav class="nav" aria-label="Primary navigation">
+        <a href="#featured">Command @ 8</a>
         <a href="#hubs">Hubs</a>
         <a href="#events">Events</a>
-        <a href="#calendar">Calendar</a>
         <a href="#quick-links">Quick Links</a>
       </nav>
     </div>
@@ -754,19 +807,19 @@
               <div class="eyebrow">KW North Internal Portal</div>
               <h1>One place for everything your agents need.</h1>
               <p>
-                Access documents, accountability, training, support, and upcoming KW North meetings and training sessions from one clean, mobile-friendly landing page.
+                Access documents, accountability, training, support, and important KW North meetings from one clean, mobile-friendly landing page.
               </p>
 
               <div class="hero-actions">
                 <a class="btn btn-primary" href="#hubs">Open Main Hubs</a>
-                <a class="btn btn-secondary" href="#events">View Upcoming Events</a>
+                <a class="btn btn-secondary" href="#featured">View Featured Training</a>
               </div>
             </div>
 
             <div class="hero-panel">
               <div class="mini-panel">
                 <div class="mini-label">Main Access</div>
-                <div class="mini-value">4 Core Hubs + Events Calendar</div>
+                <div class="mini-value">4 Core Hubs + Featured Training</div>
                 <div class="mini-note">
                   Built to keep important systems in one place with simple navigation for laptop and mobile users.
                 </div>
@@ -778,6 +831,71 @@
                 <div class="mini-note">
                   Easy to expand later with announcements, onboarding shortcuts, and an installable app-style version.
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="featured">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Featured Training</h2>
+            <p class="section-subtitle">
+              Recurring live training that deserves front-and-center visibility.
+            </p>
+          </div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-grid">
+            <div>
+              <div class="feature-badge">🔥 Featured Recurring Session</div>
+              <h3 class="feature-title">Command @ 8 Tech Training</h3>
+              <p class="feature-text">
+                A short, focused training session that keeps agents plugged into tech, systems, and practical Command usage throughout the week.
+              </p>
+
+              <div class="feature-meta">
+                <span class="tag">Every Monday</span>
+                <span class="tag">Every Wednesday</span>
+                <span class="tag">Every Friday</span>
+                <span class="tag">08:00 - 08:15</span>
+                <span class="tag">Online</span>
+              </div>
+
+              <div class="feature-actions">
+                <a class="btn btn-primary" href="https://meet.google.com/zky-wqyk-ork" target="_blank" rel="noopener noreferrer">
+                  Join Command @ 8
+                </a>
+                <a class="btn btn-secondary feature-secondary" href="https://kw-north-training-byiud35hq-propertysquad-6926s-projects.vercel.app/" target="_blank" rel="noopener noreferrer">
+                  Open Training Hub
+                </a>
+              </div>
+            </div>
+
+            <div class="feature-panel">
+              <div class="feature-panel-card">
+                <h4>Why it matters</h4>
+                <p>
+                  This recurring session creates rhythm and consistency. It is fast enough for busy agents, but frequent enough to build stronger tech habits over time.
+                </p>
+              </div>
+
+              <div class="feature-panel-card">
+                <h4>Best use</h4>
+                <p>
+                  Keep this section updated as a standing training spotlight. If the link or time changes, only this featured block needs to be updated.
+                </p>
+              </div>
+
+              <div class="feature-panel-card">
+                <h4>Meeting link</h4>
+                <p>
+                  Google Meet is already linked so agents can join straight from this page on both mobile and desktop.
+                </p>
               </div>
             </div>
           </div>
@@ -876,40 +994,14 @@
       <div class="container">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Upcoming Training & Meetings</h2>
+            <h2 class="section-title">Upcoming Meetings & Actions</h2>
             <p class="section-subtitle">
-              Highlight the next important sessions so agents can join or RSVP directly from the main hub.
+              Keep important live sessions and quick-access actions visible from the main hub.
             </p>
           </div>
         </div>
 
         <div class="events-grid" id="eventsGrid"></div>
-      </div>
-    </section>
-
-    <section class="section" id="calendar">
-      <div class="container">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title">Full Calendar</h2>
-            <p class="section-subtitle">
-              Use the live calendar below for the wider schedule of training, meetings, events, and important dates.
-            </p>
-          </div>
-        </div>
-
-        <div class="calendar-wrap">
-          <iframe
-            id="calendarFrame"
-            class="calendar-frame"
-            src=""
-            loading="lazy"
-            title="KW North Calendar">
-          </iframe>
-          <div class="calendar-note">
-            If the calendar does not display for everyone, enable public calendar sharing in Google Calendar settings.
-          </div>
-        </div>
       </div>
     </section>
 
@@ -978,7 +1070,7 @@
         <div class="footer-left">
           <h4>KW North Main Hub</h4>
           <p>
-            Central landing page for support, resources, accountability, training, meetings, and calendar access.
+            Central landing page for support, resources, accountability, training, meetings, and quick access.
           </p>
         </div>
 
@@ -994,7 +1086,6 @@
 
   <script>
     const eventsGrid = document.getElementById("eventsGrid");
-    const calendarFrame = document.getElementById("calendarFrame");
 
     function createEventCard(event) {
       return `
@@ -1026,7 +1117,7 @@
         <article class="event-card">
           <div class="event-icon">📅</div>
           <h3>No featured events added yet</h3>
-          <p>Add your next training or meeting sessions inside the EVENTS array near the top of the code.</p>
+          <p>Add your next meetings or important actions near the top of the code inside the EVENTS array.</p>
           <div class="event-meta">
             <span class="tag">Easy to update</span>
             <span class="tag">Mobile friendly</span>
@@ -1034,8 +1125,6 @@
         </article>
       `;
     }
-
-    calendarFrame.src = CALENDAR_EMBED_URL;
   </script>
 </body>
 </html>
