@@ -367,7 +367,7 @@
       display: flex;
       flex-wrap: wrap;
       gap: 10px;
-      margin: 18px 0 24px;
+      margin: 18px 0 18px;
     }
 
     .tag {
@@ -379,6 +379,18 @@
       border: 1px solid rgba(255,255,255,0.08);
       color: rgba(255,255,255,0.88);
       font-size: 0.84rem;
+      font-weight: 600;
+    }
+
+    .feature-status {
+      margin: 0 0 22px;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.10);
+      color: #ffffff;
+      font-size: 0.98rem;
+      line-height: 1.6;
       font-weight: 600;
     }
 
@@ -698,7 +710,8 @@
       .hub-card p,
       .event-card p,
       .tips-wrap p,
-      .quick-card p {
+      .quick-card p,
+      .feature-status {
         font-size: 0.94rem;
       }
 
@@ -741,14 +754,17 @@
 
     const FEATURED_EVENT = {
       title: "Command @ 8 Tech Training",
-      subtitle: "Recurring live tech touchpoint for KW North agents",
-      schedule: "Every Monday, Wednesday & Friday",
-      time: "08:00 - 08:15",
+      scheduleDays: [1, 3, 5], // Monday, Wednesday, Friday
+      dayNames: {
+        1: "Monday",
+        3: "Wednesday",
+        5: "Friday"
+      },
+      timeLabel: "08:00 - 08:15",
       type: "Online",
-      description:
-        "A short, high-impact recurring training designed to keep agents consistent on Command and tech usage. Quick to join, easy to attend, and built for momentum.",
       joinLink: "https://meet.google.com/zky-wqyk-ork",
-      detailsLink: "https://kw-north-training-byiud35hq-propertysquad-6926s-projects.vercel.app/"
+      detailsLink: "https://kw-north-training-byiud35hq-propertysquad-6926s-projects.vercel.app/",
+      timezone: "Africa/Johannesburg"
     };
 
     const EVENTS = [
@@ -866,8 +882,12 @@
                 <span class="tag">Online</span>
               </div>
 
+              <div class="feature-status" id="commandStatus">
+                Checking next session...
+              </div>
+
               <div class="feature-actions">
-                <a class="btn btn-primary" href="https://meet.google.com/zky-wqyk-ork" target="_blank" rel="noopener noreferrer">
+                <a class="btn btn-primary" id="commandJoinBtn" href="https://meet.google.com/zky-wqyk-ork" target="_blank" rel="noopener noreferrer">
                   Join Command @ 8
                 </a>
                 <a class="btn btn-secondary feature-secondary" href="https://kw-north-training-byiud35hq-propertysquad-6926s-projects.vercel.app/" target="_blank" rel="noopener noreferrer">
@@ -1086,6 +1106,8 @@
 
   <script>
     const eventsGrid = document.getElementById("eventsGrid");
+    const commandStatus = document.getElementById("commandStatus");
+    const commandJoinBtn = document.getElementById("commandJoinBtn");
 
     function createEventCard(event) {
       return `
@@ -1110,6 +1132,51 @@
       `;
     }
 
+    function getJohannesburgDayNumber() {
+      const now = new Date();
+      const formatter = new Intl.DateTimeFormat("en-US", {
+        weekday: "short",
+        timeZone: FEATURED_EVENT.timezone
+      });
+      const dayName = formatter.format(now);
+
+      const map = {
+        Sun: 0,
+        Mon: 1,
+        Tue: 2,
+        Wed: 3,
+        Thu: 4,
+        Fri: 5,
+        Sat: 6
+      };
+
+      return map[dayName];
+    }
+
+    function getNextScheduledDay(currentDay, scheduledDays) {
+      for (const day of scheduledDays) {
+        if (day > currentDay) return day;
+      }
+      return scheduledDays[0];
+    }
+
+    function updateCommandStatus() {
+      const today = getJohannesburgDayNumber();
+      const scheduledDays = FEATURED_EVENT.scheduleDays;
+      const isLiveDay = scheduledDays.includes(today);
+
+      if (isLiveDay) {
+        const todayName = FEATURED_EVENT.dayNames[today];
+        commandStatus.textContent = `Live Today: ${todayName} at ${FEATURED_EVENT.timeLabel} (${FEATURED_EVENT.timezone})`;
+        commandJoinBtn.textContent = "Join Today’s Session";
+      } else {
+        const nextDay = getNextScheduledDay(today, scheduledDays);
+        const nextDayName = FEATURED_EVENT.dayNames[nextDay];
+        commandStatus.textContent = `Next Session: ${nextDayName} at ${FEATURED_EVENT.timeLabel} (${FEATURED_EVENT.timezone})`;
+        commandJoinBtn.textContent = "Open Meeting Link";
+      }
+    }
+
     if (Array.isArray(EVENTS) && EVENTS.length) {
       eventsGrid.innerHTML = EVENTS.map(createEventCard).join("");
     } else {
@@ -1125,6 +1192,8 @@
         </article>
       `;
     }
+
+    updateCommandStatus();
   </script>
 </body>
 </html>
