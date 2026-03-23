@@ -6,7 +6,7 @@
   <title>KW North Main Hub</title>
   <meta
     name="description"
-    content="KW North Main Hub for support, documents, accountability, and training."
+    content="KW North Main Hub for support, documents, accountability, training, and upcoming events."
   />
   <style>
     :root {
@@ -314,7 +314,9 @@
       gap: 18px;
     }
 
-    .hub-card {
+    .hub-card,
+    .event-card,
+    .quick-card {
       position: relative;
       display: flex;
       flex-direction: column;
@@ -327,14 +329,17 @@
       transition: transform var(--transition), border-color var(--transition), box-shadow var(--transition), background var(--transition);
     }
 
-    .hub-card:hover {
+    .hub-card:hover,
+    .event-card:hover,
+    .quick-card:hover {
       transform: translateY(-5px);
       border-color: rgba(200,16,46,0.34);
       box-shadow: 0 18px 42px rgba(0, 0, 0, 0.24);
       background: linear-gradient(145deg, rgba(255,255,255,0.09), rgba(255,255,255,0.04));
     }
 
-    .hub-icon {
+    .hub-icon,
+    .event-icon {
       width: 56px;
       height: 56px;
       border-radius: 16px;
@@ -347,20 +352,24 @@
       margin-bottom: 18px;
     }
 
-    .hub-card h3 {
+    .hub-card h3,
+    .event-card h3 {
       margin: 0 0 10px;
       font-size: 1.18rem;
       line-height: 1.3;
     }
 
-    .hub-card p {
+    .hub-card p,
+    .event-card p,
+    .quick-card p {
       margin: 0;
       color: rgba(255,255,255,0.76);
       line-height: 1.65;
       font-size: 0.97rem;
     }
 
-    .hub-meta {
+    .hub-meta,
+    .event-meta {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -379,14 +388,17 @@
       font-weight: 600;
     }
 
-    .hub-actions {
+    .hub-actions,
+    .event-actions {
       margin-top: auto;
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .hub-link {
+    .hub-link,
+    .event-btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
@@ -400,10 +412,51 @@
       transition: transform var(--transition), box-shadow var(--transition), background var(--transition);
     }
 
-    .hub-link:hover {
+    .hub-link:hover,
+    .event-btn:hover {
       transform: translateY(-2px);
       background: #f3f3f3;
       box-shadow: 0 12px 24px rgba(255,255,255,0.08);
+    }
+
+    .event-btn.secondary {
+      background: rgba(255,255,255,0.06);
+      color: var(--kw-white);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .event-btn.secondary:hover {
+      background: rgba(255,255,255,0.10);
+    }
+
+    .events-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .calendar-wrap {
+      margin-top: 22px;
+      background: linear-gradient(145deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: var(--radius-lg);
+      padding: 16px;
+      box-shadow: var(--kw-card-shadow);
+    }
+
+    .calendar-frame {
+      width: 100%;
+      min-height: 720px;
+      border: none;
+      border-radius: 16px;
+      background: #ffffff;
+    }
+
+    .calendar-note {
+      margin-top: 12px;
+      color: rgba(255,255,255,0.68);
+      font-size: 0.92rem;
+      line-height: 1.6;
     }
 
     .quick-grid {
@@ -413,23 +466,9 @@
       margin-top: 8px;
     }
 
-    .quick-card {
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: var(--radius-md);
-      padding: 20px;
-    }
-
     .quick-card h4 {
       margin: 0 0 10px;
       font-size: 1.02rem;
-    }
-
-    .quick-card p {
-      margin: 0;
-      color: rgba(255,255,255,0.74);
-      line-height: 1.6;
-      font-size: 0.95rem;
     }
 
     .tips-wrap {
@@ -513,8 +552,16 @@
         grid-template-columns: repeat(2, minmax(0, 1fr));
       }
 
+      .events-grid {
+        grid-template-columns: 1fr;
+      }
+
       .quick-grid {
         grid-template-columns: 1fr;
+      }
+
+      .calendar-frame {
+        min-height: 620px;
       }
     }
 
@@ -553,6 +600,10 @@
       .footer-card {
         align-items: flex-start;
       }
+
+      .calendar-frame {
+        min-height: 540px;
+      }
     }
 
     @media (max-width: 520px) {
@@ -588,30 +639,38 @@
       .hero p,
       .section-subtitle,
       .hub-card p,
+      .event-card p,
       .tips-wrap p,
       .quick-card p {
         font-size: 0.94rem;
       }
 
       .hub-card,
+      .event-card,
       .quick-card,
       .tips-wrap {
         padding: 18px;
       }
 
       .btn,
-      .hub-link {
+      .hub-link,
+      .event-btn {
         width: 100%;
       }
 
       .hero-actions,
       .hub-actions,
+      .event-actions,
       .footer-links {
         width: 100%;
       }
 
       .footer-links a {
         flex: 1 1 100%;
+      }
+
+      .calendar-frame {
+        min-height: 480px;
       }
     }
   </style>
@@ -624,6 +683,47 @@
       training: "https://kw-north-training-byiud35hq-propertysquad-6926s-projects.vercel.app/",
       support: "https://kw-north-agent-support.vercel.app/"
     };
+
+    const CALENDAR_EMBED_URL = "https://calendar.google.com/calendar/embed?src=kwnorth%40kwsa.co.za&ctz=Africa%2FJohannesburg";
+
+    const EVENTS = [
+      {
+        icon: "📅",
+        title: "Tuesday Meeting",
+        date: "Tuesday, 24 March",
+        time: "08:30 - 10:30",
+        type: "Online",
+        description: "Join the Tuesday Meeting directly from the KW North Main Hub.",
+        primaryLabel: "Join Meeting",
+        primaryLink: "https://meet.google.com/hgn-aekk-jpu",
+        secondaryLabel: "Open Calendar",
+        secondaryLink: "https://calendar.google.com/calendar/u/0?cid=a3dub3J0aEBrd3NhLmNvLnph"
+      },
+      {
+        icon: "🎓",
+        title: "New Agent Rev Up",
+        date: "Every Tuesday",
+        time: "08:30 - 09:30",
+        type: "Online",
+        description: "Weekly focused training session for new agents to build consistency and momentum.",
+        primaryLabel: "Join Meeting",
+        primaryLink: "#",
+        secondaryLabel: "Add to Calendar",
+        secondaryLink: "#"
+      },
+      {
+        icon: "👥",
+        title: "All Agents Weekly Meeting",
+        date: "Every Thursday",
+        time: "09:00 - 10:00",
+        type: "In Person / Online",
+        description: "Main weekly meeting for all agents with updates, communication, and focused training.",
+        primaryLabel: "View Details",
+        primaryLink: "#",
+        secondaryLabel: "RSVP / Calendar",
+        secondaryLink: "#"
+      }
+    ];
   </script>
 
   <header class="topbar">
@@ -632,14 +732,15 @@
         <div class="brand-mark">KW</div>
         <div class="brand-text">
           <p class="brand-title">KW North Main Hub</p>
-          <p class="brand-subtitle">Your central access point for tools, training, and support</p>
+          <p class="brand-subtitle">Your central access point for tools, training, meetings, and support</p>
         </div>
       </div>
 
       <nav class="nav" aria-label="Primary navigation">
         <a href="#hubs">Hubs</a>
+        <a href="#events">Events</a>
+        <a href="#calendar">Calendar</a>
         <a href="#quick-links">Quick Links</a>
-        <a href="#help">Help</a>
       </nav>
     </div>
   </header>
@@ -653,20 +754,19 @@
               <div class="eyebrow">KW North Internal Portal</div>
               <h1>One place for everything your agents need.</h1>
               <p>
-                Access the KW North Documents Hub, Accountability Program, Training Hub, and Agent Support Hub
-                from one clean, mobile-friendly landing page designed for everyday use.
+                Access documents, accountability, training, support, and upcoming KW North meetings and training sessions from one clean, mobile-friendly landing page.
               </p>
 
               <div class="hero-actions">
                 <a class="btn btn-primary" href="#hubs">Open Main Hubs</a>
-                <a class="btn btn-secondary" href="javascript:void(0)" onclick="window.open(HUB_LINKS.support, '_blank')">Get Support</a>
+                <a class="btn btn-secondary" href="#events">View Upcoming Events</a>
               </div>
             </div>
 
             <div class="hero-panel">
               <div class="mini-panel">
                 <div class="mini-label">Main Access</div>
-                <div class="mini-value">4 Core Hubs</div>
+                <div class="mini-value">4 Core Hubs + Events Calendar</div>
                 <div class="mini-note">
                   Built to keep important systems in one place with simple navigation for laptop and mobile users.
                 </div>
@@ -674,9 +774,9 @@
 
               <div class="mini-panel">
                 <div class="mini-label">Designed For</div>
-                <div class="mini-value">Agents, training, documents, accountability, and support</div>
+                <div class="mini-value">Agents, training, documents, accountability, support, and meetings</div>
                 <div class="mini-note">
-                  Easy to expand later with announcements, downloads, onboarding links, or an installable app-style version.
+                  Easy to expand later with announcements, onboarding shortcuts, and an installable app-style version.
                 </div>
               </div>
             </div>
@@ -772,13 +872,54 @@
       </div>
     </section>
 
+    <section class="section" id="events">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Upcoming Training & Meetings</h2>
+            <p class="section-subtitle">
+              Highlight the next important sessions so agents can join or RSVP directly from the main hub.
+            </p>
+          </div>
+        </div>
+
+        <div class="events-grid" id="eventsGrid"></div>
+      </div>
+    </section>
+
+    <section class="section" id="calendar">
+      <div class="container">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Full Calendar</h2>
+            <p class="section-subtitle">
+              Use the live calendar below for the wider schedule of training, meetings, events, and important dates.
+            </p>
+          </div>
+        </div>
+
+        <div class="calendar-wrap">
+          <iframe
+            id="calendarFrame"
+            class="calendar-frame"
+            src=""
+            loading="lazy"
+            title="KW North Calendar">
+          </iframe>
+          <div class="calendar-note">
+            If the calendar does not display for everyone, enable public calendar sharing in Google Calendar settings.
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="section" id="quick-links">
       <div class="container">
         <div class="section-header">
           <div>
             <h2 class="section-title">Quick Links</h2>
             <p class="section-subtitle">
-              A simple shortcut section for faster day-to-day use.
+              Fast shortcuts for the most common actions.
             </p>
           </div>
         </div>
@@ -821,7 +962,7 @@
           </div>
         </div>
 
-        <div class="tips-wrap" id="help">
+        <div class="tips-wrap">
           <h3>Future-ready setup</h3>
           <p>
             This main hub can later be upgraded with announcements, featured updates, a login layer, or converted into an installable app-style experience for agents using a Progressive Web App setup.
@@ -837,7 +978,7 @@
         <div class="footer-left">
           <h4>KW North Main Hub</h4>
           <p>
-            Central landing page for support, resources, accountability, and training.
+            Central landing page for support, resources, accountability, training, meetings, and calendar access.
           </p>
         </div>
 
@@ -850,5 +991,51 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const eventsGrid = document.getElementById("eventsGrid");
+    const calendarFrame = document.getElementById("calendarFrame");
+
+    function createEventCard(event) {
+      return `
+        <article class="event-card">
+          <div class="event-icon">${event.icon || "📅"}</div>
+          <h3>${event.title}</h3>
+          <p>${event.description}</p>
+          <div class="event-meta">
+            <span class="tag">${event.date}</span>
+            <span class="tag">${event.time}</span>
+            <span class="tag">${event.type}</span>
+          </div>
+          <div class="event-actions">
+            <a class="event-btn" href="${event.primaryLink}" target="_blank" rel="noopener noreferrer">
+              ${event.primaryLabel}
+            </a>
+            <a class="event-btn secondary" href="${event.secondaryLink}" target="_blank" rel="noopener noreferrer">
+              ${event.secondaryLabel}
+            </a>
+          </div>
+        </article>
+      `;
+    }
+
+    if (Array.isArray(EVENTS) && EVENTS.length) {
+      eventsGrid.innerHTML = EVENTS.map(createEventCard).join("");
+    } else {
+      eventsGrid.innerHTML = `
+        <article class="event-card">
+          <div class="event-icon">📅</div>
+          <h3>No featured events added yet</h3>
+          <p>Add your next training or meeting sessions inside the EVENTS array near the top of the code.</p>
+          <div class="event-meta">
+            <span class="tag">Easy to update</span>
+            <span class="tag">Mobile friendly</span>
+          </div>
+        </article>
+      `;
+    }
+
+    calendarFrame.src = CALENDAR_EMBED_URL;
+  </script>
 </body>
 </html>
