@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>KW North Leadership Login</title>
+<style>
+:root{--red:#B40101;--ink:#111827;--muted:#6b7280;--line:#e5e7eb;--bg:#f4f5f7;--green:#166534;--greenbg:#ecfdf3;--danger:#991b1b;--dangerbg:#fef2f2}
+*{box-sizing:border-box}body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);min-height:100vh;display:grid;place-items:center;padding:20px}.card{width:min(480px,100%);background:#fff;border:1px solid var(--line);border-radius:22px;box-shadow:0 20px 55px rgba(0,0,0,.12);padding:28px}.brand{display:flex;align-items:center;gap:12px;margin-bottom:22px}.kw{width:48px;height:48px;border-radius:13px;background:var(--red);color:#fff;display:grid;place-items:center;font-weight:900}.brand small{display:block;color:var(--muted);margin-top:3px}h1{font-size:25px;margin:0 0 8px}p{color:var(--muted);line-height:1.55;margin:0 0 18px}.field{margin:14px 0}.field label{display:block;font-size:12px;font-weight:800;margin-bottom:6px}.field input{width:100%;height:46px;border:1px solid #d1d5db;border-radius:10px;padding:0 12px;font-size:15px}.btn{width:100%;border:0;border-radius:10px;padding:12px 14px;background:var(--red);color:#fff;font-weight:800;cursor:pointer}.btn:disabled{opacity:.6;cursor:not-allowed}.linkbtn{border:0;background:none;color:var(--red);font-weight:800;cursor:pointer;padding:12px 0}.msg{display:none;padding:11px 12px;border-radius:10px;margin:12px 0;font-size:13px;font-weight:700}.ok{background:var(--greenbg);color:var(--green)}.err{background:var(--dangerbg);color:var(--danger)}.hidden{display:none}
+</style>
+</head>
+<body>
+<form class="card" id="loginForm">
+<div class="brand"><div class="kw">KW</div><div><strong>KW North</strong><small>Leadership Portal</small></div></div>
+<h1>Leadership Login</h1>
+<p>Use your shared KW North Training Admin / Leadership login.</p>
+<div id="loginError" class="msg err"></div>
+<div class="field"><label>Email</label><input id="email" type="email" autocomplete="username" required></div>
+<div class="field"><label>Password</label><input id="password" type="password" autocomplete="current-password" required></div>
+<button id="loginBtn" class="btn" type="submit">Sign In</button>
+<button class="linkbtn" type="button" id="forgotLink">Forgot password?</button>
+</form>
+<form class="card hidden" id="forgotForm">
+<div class="brand"><div class="kw">KW</div><div><strong>KW North</strong><small>Password Help</small></div></div>
+<h1>Forgot Password</h1>
+<p>Enter your leadership email. The request goes to the shared KW North admin reset system.</p>
+<div id="forgotOk" class="msg ok"></div><div id="forgotError" class="msg err"></div>
+<div class="field"><label>Email</label><input id="forgotEmail" type="email" autocomplete="username" required></div>
+<button id="forgotBtn" class="btn" type="submit">Request Password Reset</button>
+<button class="linkbtn" type="button" id="backLink">Back to sign in</button>
+</form>
+<script>
+const LEADERSHIP_API='https://fdbsqjtwbucjhjgphhyh.supabase.co/functions/v1/leadership-api';
+const RESET_API='https://fdbsqjtwbucjhjgphhyh.supabase.co/functions/v1/training-admin-api';
+const KEY='sb_publishable_GmMPNJ5JAKMh8j9Mk1nmpg_3fs17xqG';
+const TOKEN_KEY='kwNorthLeadershipToken';
+const loginForm=document.getElementById('loginForm'),forgotForm=document.getElementById('forgotForm'),email=document.getElementById('email'),password=document.getElementById('password'),loginBtn=document.getElementById('loginBtn'),loginError=document.getElementById('loginError'),forgotEmail=document.getElementById('forgotEmail'),forgotBtn=document.getElementById('forgotBtn'),forgotOk=document.getElementById('forgotOk'),forgotError=document.getElementById('forgotError');
+document.getElementById('forgotLink').onclick=()=>{forgotEmail.value=email.value.trim();loginForm.classList.add('hidden');forgotForm.classList.remove('hidden');forgotOk.style.display='none';forgotError.style.display='none'};
+document.getElementById('backLink').onclick=()=>{forgotForm.classList.add('hidden');loginForm.classList.remove('hidden')};
+loginForm.addEventListener('submit',async e=>{e.preventDefault();loginError.style.display='none';loginBtn.disabled=true;loginBtn.textContent='Signing in…';try{const r=await fetch(LEADERSHIP_API,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify({action:'login',email:email.value.trim(),password:password.value})});const d=await r.json().catch(()=>({error:'Invalid server response'}));if(!r.ok)throw new Error(d.error||'Login failed');sessionStorage.setItem(TOKEN_KEY,d.token);window.location.replace('/leadership/index.html')}catch(x){loginError.textContent=x.message;loginError.style.display='block'}finally{loginBtn.disabled=false;loginBtn.textContent='Sign In'}});
+forgotForm.addEventListener('submit',async e=>{e.preventDefault();forgotOk.style.display='none';forgotError.style.display='none';forgotBtn.disabled=true;forgotBtn.textContent='Submitting…';try{const r=await fetch(RESET_API,{method:'POST',headers:{'Content-Type':'application/json','apikey':KEY},body:JSON.stringify({action:'forgot_password',email:forgotEmail.value.trim()})});const d=await r.json().catch(()=>({error:'Invalid server response'}));if(!r.ok)throw new Error(d.error||'Request failed');forgotOk.textContent=d.message||'Password reset request submitted.';forgotOk.style.display='block'}catch(x){forgotError.textContent=x.message;forgotError.style.display='block'}finally{forgotBtn.disabled=false;forgotBtn.textContent='Request Password Reset'}});
+</script>
+</body>
+</html>
