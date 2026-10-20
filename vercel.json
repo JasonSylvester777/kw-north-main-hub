@@ -1,0 +1,7 @@
+{
+  "cleanUrls": false,
+  "redirects": [
+    { "source": "/leadership", "destination": "/leadership-login.html", "permanent": false },
+    { "source": "/leadership/", "destination": "/leadership-login.html", "permanent": false }
+  ]
+}
