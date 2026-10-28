@@ -1,11 +1,8 @@
-const PRICE_CALCULATOR_URL='';
+const PRICE_CALCULATOR_URL='https://tinyurl.com/32e947jf';
 
 function openPriceCalculator(){
-  if(PRICE_CALCULATOR_URL){
-    window.open(PRICE_CALCULATOR_URL,'_blank','noopener,noreferrer');
-  } else {
-    showToast('Price Calculator — ready to connect once the calculator link is supplied.');
-  }
+  const popup=window.open(PRICE_CALCULATOR_URL,'_blank','noopener,noreferrer');
+  if(!popup && typeof showToast==='function') showToast('Please allow pop-ups to open the Price Calculator.');
 }
 
 function injectPriceCalculator(){
@@ -19,6 +16,7 @@ function injectPriceCalculator(){
       button.className='quick-action';
       button.innerHTML='<span class="quick-arrow">↗</span><span class="quick-icon">R</span><strong>Price Calculator</strong><small>Property pricing tool</small>';
       button.addEventListener('click',openPriceCalculator);
+      button.title='Open Price Calculator';
       quickActions.appendChild(button);
     }
   }
@@ -30,8 +28,9 @@ function injectPriceCalculator(){
       button.id='priceCalculatorTool';
       button.className='tool-card';
       button.style.textAlign='left';
-      button.innerHTML='<div class="tool-logo">R</div><h3>Price Calculator</h3><p>Calculate and compare property pricing quickly</p><div class="tool-meta"><span class="tag">Property Tools</span><span class="status">READY ›</span></div>';
+      button.innerHTML='<div class="tool-logo">R</div><h3>Price Calculator</h3><p>Calculate and compare property pricing quickly</p><div class="tool-meta"><span class="tag">Property Tools</span><span class="status">CONNECTED ›</span></div>';
       button.addEventListener('click',openPriceCalculator);
+      button.title='Open Price Calculator';
       grid.appendChild(button);
     }
   }
