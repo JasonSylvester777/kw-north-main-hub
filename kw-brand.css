@@ -1,0 +1,57 @@
+:root{
+  --kw-red:#B40101;
+  --kw-grey:#999999;
+  --kw-light-grey:#CCCCCC;
+  --kw-dark-grey:#666666;
+  --kw-black:#000000;
+
+  --red:#B40101;
+  --red-dark:#000000;
+  --red-soft:rgba(180,1,1,.08);
+  --ink:#000000;
+  --muted:#666666;
+  --line:#CCCCCC;
+  --panel:#FFFFFF;
+  --bg:#FFFFFF;
+  --soft:rgba(204,204,204,.18);
+
+  --green:#666666;
+  --green-soft:rgba(153,153,153,.14);
+  --amber:#666666;
+  --amber-soft:rgba(204,204,204,.28);
+  --blue:#666666;
+  --blue-soft:rgba(153,153,153,.12);
+  --purple:#666666;
+  --purple-soft:rgba(204,204,204,.22);
+}
+
+/* KW brand-standard overrides for the Agent Hub prototype */
+body{color:#000000;background:#FFFFFF}
+.sidebar{background:#000000;color:#FFFFFF;border-right-color:#666666}
+.brand-mark,.mobile-brand-mark,.nav-item.active,.btn-primary{background:#B40101!important;color:#FFFFFF!important}
+.brand-caption,.sidebar-foot p,.profile-copy small,.muted,.page-head p,.quick-action small,.metric p,.schedule-copy small,.list-main small,.street-row small,.tool-card p{color:#666666!important}
+.nav-item{color:#CCCCCC}
+.nav-item span:first-child{color:#999999}
+.nav-item:hover{background:#666666;color:#FFFFFF}
+.pilot-badge{background:rgba(180,1,1,.18)!important;color:#FFFFFF!important;border-color:#B40101!important}
+.topbar,.card,.quick-action,.tool-card,.transaction-card,.list-row,.profile-chip,.icon-btn{background:#FFFFFF}
+.topbar,.card,.quick-action,.tool-card,.transaction-card,.list-row,.profile-chip,.icon-btn,.search-wrap{border-color:#CCCCCC!important}
+.search-wrap{background:rgba(204,204,204,.18)}
+.search-wrap kbd,.btn-soft{background:#FFFFFF;border-color:#CCCCCC;color:#000000}
+.btn-dark,.avatar,.tool-logo{background:#000000!important;color:#FFFFFF!important}
+.btn-ghost,.quick-icon,.metric-icon,.list-icon,.time-box{background:rgba(204,204,204,.28)!important;color:#000000!important}
+.hero-card{background:linear-gradient(120deg,#000000 0%,#666666 72%,#B40101 100%)!important}
+.hero-card:after{background:radial-gradient(circle,rgba(180,1,1,.55),rgba(180,1,1,0) 70%)!important}
+.hero-card p,.hero-stat small{color:#CCCCCC!important}
+.hero-stat{border-color:#999999!important}
+.progress{background:#CCCCCC!important}
+.progress>span{background:#B40101!important}
+.quick-action.priority{border-color:#B40101!important;background:#FFFFFF!important}
+.quick-action.priority .quick-icon,.transaction-icon{background:rgba(180,1,1,.08)!important;color:#B40101!important}
+.transaction-card.primary{border-top-color:#B40101!important}
+.transaction-card.secondary{border-top-color:#000000!important}
+.tag,.tag.green,.tag.amber,.tag.blue,.tag.purple{background:rgba(204,204,204,.35)!important;color:#666666!important}
+.tag.red{background:rgba(180,1,1,.08)!important;color:#B40101!important}
+.metric-change,.tool-meta .status{color:#666666!important;background:rgba(204,204,204,.30)!important}
+.section-label{color:#666666!important}
+.notification-dot{background:#B40101!important}
