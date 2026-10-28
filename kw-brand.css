@@ -28,8 +28,13 @@
 /* KW brand-standard overrides for the Agent Hub prototype */
 body{color:#000000;background:#FFFFFF}
 .sidebar{background:#000000;color:#FFFFFF;border-right-color:#666666}
+.brand-block{align-items:center}
+.brand-logo-box{width:62px;height:46px;border-radius:9px;background:#FFFFFF;display:flex;align-items:center;justify-content:center;padding:6px;overflow:hidden;flex:0 0 auto}
+.brand-logo-box img{max-width:100%;max-height:100%;object-fit:contain;display:block}
 .brand-mark,.mobile-brand-mark,.nav-item.active,.btn-primary{background:#B40101!important;color:#FFFFFF!important}
+.brand-name{color:#FFFFFF}
 .brand-caption,.sidebar-foot p,.profile-copy small,.muted,.page-head p,.quick-action small,.metric p,.schedule-copy small,.list-main small,.street-row small,.tool-card p{color:#666666!important}
+.sidebar .brand-caption{color:#CCCCCC!important}
 .nav-item{color:#CCCCCC}
 .nav-item span:first-child{color:#999999}
 .nav-item:hover{background:#666666;color:#FFFFFF}
@@ -55,3 +60,7 @@ body{color:#000000;background:#FFFFFF}
 .metric-change,.tool-meta .status{color:#666666!important;background:rgba(204,204,204,.30)!important}
 .section-label{color:#666666!important}
 .notification-dot{background:#B40101!important}
+
+/* compact official-style KW treatment for mobile */
+.mobile-brand-mark{font-size:0;position:relative}
+.mobile-brand-mark::before{content:'KW';font-size:12px;font-weight:900;letter-spacing:-.5px;color:#FFFFFF}
